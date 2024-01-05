@@ -38,8 +38,8 @@ void writeTemperature() {
 const int sensorPin = A0; // Analog input pin that the sensor is attached to
 
 int sensorValue = 0; // Value read from the sensor
-int threshold = 600; // Threshold value to determine if the soil is wet or dry
-int threshold2 = 650; // Threshold value to determine if the soil is dry or very dry
+int threshold = 700; // Threshold value to determine if the soil is wet or dry
+int threshold2 = 750; // Threshold value to determine if the soil is dry or very dry
 
 void setup() {
   // Debug console
@@ -60,7 +60,7 @@ void loop() {
   sensorValue = analogRead(sensorPin); // Read the sensor value
   Serial.println(sensorValue); // Print the sensor value to the serial monitor
 
-  if (sensorValue > threshold && sensorValue < threshold2) { // If the soil is dry: between 600 and 650
+  if (sensorValue > threshold && sensorValue < threshold2) { // If the soil is dry: between 700 and 750
     int red = 255, green = 255, blue = 0;
     int ledColour = carrier.leds.Color(red, green, blue); //create colour to display on LEDs
     carrier.leds.fill(ledColour); 	//Set all LEDs to yellow
@@ -76,7 +76,7 @@ void loop() {
     delay(2000); // Wait for 2 seconds
   }
 
-  if (sensorValue > threshold2) { // If the soil is very dry - a reading over 650
+  if (sensorValue > threshold2) { // If the soil is very dry - a reading over 750
     int red = 255, green = 0, blue = 0;
     int ledColour = carrier.leds.Color(red, green, blue); //create colour to display on LEDs
     carrier.leds.fill(ledColour); //set leds to red
@@ -93,7 +93,7 @@ void loop() {
 
   }else
     {
-    int red = 0, green = 0, blue = 200; //when the reading is less than the threshold i.e. not dry
+    int red = 138, green = 43, blue = 226; //when the reading is less than the threshold i.e. not dry
     int ledColour = carrier.leds.Color(red, green, blue); //create colour to display on LEDs
     carrier.leds.fill(ledColour); //set leds to blue
     carrier.leds.show(); 
