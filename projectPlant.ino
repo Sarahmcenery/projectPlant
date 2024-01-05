@@ -1,4 +1,4 @@
-/* Fill-in information from Blynk Device Info tab  here */
+/*plant monitoring system
 #define BLYNK_TEMPLATE_ID "TMPL4xxN3Gd6O"
 #define BLYNK_TEMPLATE_NAME "ProjectPlant"
 #define BLYNK_AUTH_TOKEN "1igobC5jsTj7haQeBUS99mI-tLOY35FW"
@@ -9,15 +9,13 @@
 #include <Arduino_MKRIoTCarrier.h>
 
 //MKRIoTCarrier carrier; //an object of type MKRIoTCarrier is created
-// Your WiFi credentials.
-// Set password to "" for open networks.
+// WiFi credentials.
 char ssid[] = "***************";
 char pass[] = "********************";
 
 BlynkTimer timer;
 MKRIoTCarrier carrier;
 
-// This function is called every time the Virtual Pin 0 state changes
 BLYNK_WRITE(V0) {
   // Set incoming value from pin V0 to a variable
   int lightsOn = param.asInt();
@@ -30,7 +28,6 @@ BLYNK_WRITE(V0) {
 
 // This function sends temperature every second to Virtual Pin 1.
 void writeTemperature() {
-  // Don't send more that 10 values per second.
   float temperature = carrier.Env.readTemperature();
   Blynk.virtualWrite(V1, temperature);
 }
@@ -49,8 +46,8 @@ void setup() {
 
   // Setup a function to be called every second
   timer.setInterval(2000L, writeTemperature);
-  carrier.withCase();                         //Remove this if your arduino is NOT in it's case/housing
-  carrier.Buttons.updateConfig(100, TOUCH0);  //Remove this if your arduino is NOT in it's case/housing
+  carrier.withCase();                         
+  carrier.Buttons.updateConfig(100, TOUCH0);  
   carrier.begin();
   carrier.display.fillScreen(0x07E0);
 }
