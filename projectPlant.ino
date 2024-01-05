@@ -11,8 +11,8 @@
 //MKRIoTCarrier carrier; //an object of type MKRIoTCarrier is created
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "VODAFONE-30C0";
-char pass[] = "YmXHN7J3RRsMFFbC";
+char ssid[] = "***************";
+char pass[] = "********************";
 
 BlynkTimer timer;
 MKRIoTCarrier carrier;
